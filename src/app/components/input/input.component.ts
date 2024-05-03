@@ -8,8 +8,11 @@ import { ListaDeCompraService } from 'src/app/service/lista-de-compra.service';
   styleUrls: ['./input.component.css']
 })
 export class InputComponent implements OnInit, OnChanges {
+
   valorItem! : string;
   @Input() itemParaEdicao!: Item;
+  editando: boolean = false;
+  textoBtn: string = 'Salvar item'
 
   constructor(private listaService: ListaDeCompraService) { }
 
@@ -19,6 +22,8 @@ export class InputComponent implements OnInit, OnChanges {
     const valorAnteriorEhDiferenteDoValorNovo: boolean = !changes['itemParaEdicao'].firstChange;
 
     if(valorAnteriorEhDiferenteDoValorNovo){
+      this.editando = true;
+      this.textoBtn = 'Editar item';
       this.valorItem = this.itemParaEdicao?.nome;
     }
   }
@@ -26,6 +31,13 @@ export class InputComponent implements OnInit, OnChanges {
   adicionarItem() {
     this.listaService.adicionarItemNaLista(this.valorItem);
     this.limparCampo();
+  }
+
+  editarItem() {
+    this.listaService.editarItem(this.itemParaEdicao, this.valorItem);
+    this.limparCampo();
+    this.editando = false;
+    this.textoBtn = 'Salvar Item';
   }
 
   limparCampo(){
