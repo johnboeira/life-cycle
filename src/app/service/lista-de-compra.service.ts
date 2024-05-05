@@ -30,6 +30,7 @@ export class ListaDeCompraService {
   adicionarItemNaLista(nomeDoItem: string){
     const item: Item = this.criarItem(nomeDoItem);
     this.listaDeCompra.push(item);
+    this.atualizarLocalStorage();
   }
 
   editarItem(itemAntigo: Item, nomeEditado: string){
@@ -43,6 +44,10 @@ export class ListaDeCompraService {
     const id = itemAntigo.id;
 
     this.listaDeCompra.splice(Number(id)-1, 1, itemEditado);
+    this.atualizarLocalStorage();
+  }
 
+  atualizarLocalStorage(){
+    localStorage.setItem('itens', JSON.stringify(this.listaDeCompra));
   }
 }
