@@ -9,6 +9,7 @@ import { ListaDeCompraService } from './service/lista-de-compra.service';
 })
 export class AppComponent implements OnInit, DoCheck {
 
+
   title = 'app-lista-de-compras';
   itemParaSerEditado!: Item;
   listaDeCompra! : Array<Item>
@@ -25,5 +26,11 @@ export class AppComponent implements OnInit, DoCheck {
 
   editarItem(item: Item) {
     this.itemParaSerEditado = item;
+  }
+
+  deletarItem(id: number) {
+    const indexItem = this.listaDeCompra.findIndex((item: Item) => item.id === id);
+
+    this.listaDeCompra.splice(indexItem, 1);
   }
 }
