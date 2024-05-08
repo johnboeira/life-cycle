@@ -3,7 +3,12 @@
   </app-input>
   <div class="container">
     <div class="lista">
-      <h4 class="title-list">Lista de Compras</h4>
+      <div class="header-listar">
+        <h4 class="title-list">Lista de Compras</h4>
+        <button class="btn-header" (click)="limpar()">
+          <small>Limpar lista</small>
+        </button>
+      </div>
 
       <div *ngIf="listaDeCompra.length != 0; else naoTemItem">
         <div *ngFor="let item of listaDeCompra">

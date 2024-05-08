@@ -33,4 +33,9 @@ export class AppComponent implements OnInit, DoCheck {
 
     this.listaDeCompra.splice(indexItem, 1);
   }
+
+  limpar() {
+    this.listaDeCompra = [];
+  }
+
 }
